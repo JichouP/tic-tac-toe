@@ -28,6 +28,7 @@ export const Room: FC = () => {
     'Content-Type': 'application/json',
     'X-User': userName ?? '',
     'X-Password': password ?? '',
+    'Access-Control-Allow-Origin': '*',
   });
 
   const getRoom = async () => {
@@ -126,6 +127,7 @@ export const Room: FC = () => {
       ) : (
         <p>No rooms.</p>
       )}
+      <button></button>
     </div>
   );
 };

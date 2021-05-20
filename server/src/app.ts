@@ -6,7 +6,13 @@ const app = express();
 app.use(express.json({}));
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  next();
+  res.header('Access-Control-Allow-Headers', '*');
+
+  if ('OPTIONS' === req.method) {
+    res.send(200)
+  } else {
+    next()
+  }
 });
 app.post('/register', (req, res) => {
   const { name, password } = req.body;

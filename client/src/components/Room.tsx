@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Board } from './Board';
 import React, { FC, useState } from 'react';
+import { SERVER_URL } from '../constant';
 type User = {
   id: string;
   name: string;
@@ -34,7 +35,7 @@ export const Room: FC = () => {
       return false;
     }
     setRooms(
-      await axios.get('/room', {
+      await axios.get(SERVER_URL + '/room', {
         headers: getHeader(),
       })
     );
@@ -45,7 +46,7 @@ export const Room: FC = () => {
       return false;
     }
     setCurrentRoom(
-      await axios.post(`/room/${id}/join`, {
+      await axios.post(SERVER_URL + `/room/${id}/join`, {
         headers: getHeader(),
       })
     );
@@ -84,7 +85,7 @@ export const Room: FC = () => {
               return false;
             }
             axios.post(
-              '/register',
+              SERVER_URL + '/register',
               {
                 name: userName,
                 password: password,

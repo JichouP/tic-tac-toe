@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { produce } from 'immer';
 import styled from 'styled-components';
 import axios from 'axios';
+import { SERVER_URL } from '../constant';
 
 type User = {
   id: string;
@@ -72,7 +73,9 @@ const BoardComponent: FC<Props> = ({ className, room, myName, getHeader }) => {
         return;
       }
       const t = (state.board = (
-        await axios.get(`/room/${room.id}`, { headers: getHeader() })
+        await axios.get(SERVER_URL + `/room/${room.id}`, {
+          headers: getHeader(),
+        })
       ).data.table);
       setState(
         produce(state, (draft) => {
@@ -94,7 +97,7 @@ const BoardComponent: FC<Props> = ({ className, room, myName, getHeader }) => {
       })
     );
     axios.post(
-      `/room/${room.id}/table`,
+      SERVER_URL + `/room/${room.id}/table`,
       { table: newBoard },
       { headers: getHeader() }
     );

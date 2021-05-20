@@ -36,9 +36,11 @@ export const Room: FC = () => {
       return false;
     }
     setRooms(
-      await axios.get(SERVER_URL + '/room', {
-        headers: getHeader(),
-      })
+      (
+        await axios.get(SERVER_URL + '/room', {
+          headers: getHeader(),
+        })
+      ).data
     );
   };
 
@@ -47,14 +49,19 @@ export const Room: FC = () => {
       return false;
     }
     setCurrentRoom(
-      await axios.post(SERVER_URL + `/room/${id}/join`, {
-        headers: getHeader(),
-      })
+      (
+        await axios.post(SERVER_URL + `/room/${id}/join`, undefined, {
+          headers: getHeader(),
+        })
+      ).data
     );
+  };
+  const leaveRoom = () => {
+    setCurrentRoom(null);
   };
 
   if (currentRoom !== null && userName !== null) {
-    return <Board room={currentRoom} myName={userName} getHeader={getHeader} />;
+    return <Board room={currentRoom} myName={userName} getHeader={getHeader} leaveRoom={leaveRoom} />;
   }
 
   if (!isLogin) {
@@ -127,7 +134,20 @@ export const Room: FC = () => {
       ) : (
         <p>No rooms.</p>
       )}
-      <button></button>
+      <button
+        onClick={async () => {
+          setRooms([
+            ...rooms,
+            (
+              await axios.post(SERVER_URL + '/room', undefined, {
+                headers: getHeader(),
+              })
+            ).data,
+          ]);
+        }}
+      >
+        New room
+      </button>
     </div>
   );
 };

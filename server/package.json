@@ -1,0 +1,65 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node --files src/app.ts",
+    "build": "webpack --config webpack.prod.ts",
+    "lint": "eslint src",
+    "test": "jest --color",
+    "testWithCoverage": "jest --collectCoverage --color",
+    "openCoverage": "sensible-browser ./coverage/lcov-report/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/express": "^4.17.11",
+    "@types/jest": "^26.0.23",
+    "@types/uuid": "^8.3.0",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-node-externals": "^2.5.1",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-babel-module": "^5.3.1",
+    "eslint-plugin-import": "^2.23.2",
+    "eslint-plugin-prettier": "^3.4.0",
+    "fork-ts-checker-webpack-plugin": "^6.2.10",
+    "husky": "^6.0.0",
+    "jest": "^26.6.3",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0",
+    "ts-loader": "^9.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-merge": "^5.7.3",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "lint-staged": {
+    "*.{md,html,css}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "express": "^5.0.0-alpha.8",
+    "js-sha256": "^0.9.0",
+    "uuid": "^8.3.2"
+  }
+}

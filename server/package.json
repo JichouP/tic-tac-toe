@@ -60,6 +60,7 @@
   "dependencies": {
     "express": "^5.0.0-alpha.8",
     "js-sha256": "^0.9.0",
+    "server": "file:",
     "uuid": "^8.3.2"
   }
 }
